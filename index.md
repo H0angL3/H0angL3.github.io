@@ -1,8 +1,8 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
+title: H0ang L3 Not3
+permalink: /
 ---
-# H0ang L3
-## 1% better every day!
+
+# H0ang l3
+## 1% better every day
