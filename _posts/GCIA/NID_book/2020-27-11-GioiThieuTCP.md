@@ -62,4 +62,5 @@ Ví dụ kết nối nhu hình chứa các thông tin sau:
 - Dòng record 2:
     - Server gửi 13 bytes đến client và acknumber là 1. Nó thông báo rằng muốn nhận gói tin với sequnce number là 1 . Điều này đồng nghĩa là server chưa nhận được 27 bytes dữ liệu mà client gửi.
 - Dòng record 3:
-    - Server 
+    - Server đã nhận được dữ liệu từ phía client, gửi 9 byte dữ liệu về client và thông báo ack 28 cho biết server đang đợi gói tin bắt đầu từ byte 28 từ client.
+
