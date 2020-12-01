@@ -1,3 +1,11 @@
+---
+title: Windows Logon/Logoff
+date: 2020-11-25 20:29 +7 UTC
+categories: [Windows, Logon]
+tags: [Windows, Logon]
+layout: page
+---
+
 # Logon event 4624
 
 ## About
@@ -23,11 +31,18 @@ Phần này chứa các trường thông tin sau:
 - **Logon Type**: các giá trị có ý nghĩa như sau  
 
 | Logon type | Mô tả |
-| :---: | :---: |
-| 2 | Xảy ra khi người dùng đăng nhập vào một máy tính cục bộ (bằng cách gõ tên và mật khẩu trong logon prompt. Type 2 xảy ra khi người dùng đăng nhập bằng tài khoản cục bộ hoặc domain. Tuy nhiên, đối với tài khoant domain thì loại này chỉ xuất hiện khi ) |
+| :---: | :--- |
+| 2 | Xảy ra khi người dùng đăng nhập trên máy tính cục bộ thông qua xác thực với SAM |
 | 3 | đăng nhập qua Network (share file hoặc xác thực qua domain) |
-| 4 | Batch: thông qua bat script. ví dụ schedual task |
-| 5 | Service startup |
-| 7 | 
+| 4 | Batch: thông qua bat script. ví dụ schedualed task |
+| 5 | Service startup. Khi một service được chỉ định để chạy theo từng người dùng, service startup sẽ tạo một phiên đăng nhập trước tiên. Tuy nhiên, chỉ các người dùng thông thường mới tạo sự kiện này, các tài khoản đặc biệt như **Local System”, “NT AUTHORITY\LocalService”,  “NT AUTHORITY\NetworkService”,** sẽ không tạo ra logon session. Khi Logon sesion đóng, nó sẽ đi kèm event 4634. Nếu có 4625 với type 5 có nghĩa là tài khoản đăng kí đã đổi mật khẩu và service chưa được update theo. |
+| 7 | Type 7 thông báo rằng máy được mở khóa từ màn hình khóa (trạng thái lock). Lưu ý khi switch user, logon type được ghi là 2 |
+| 8 | **Network cleartext** xác thực thông qua network với mật khẩu được gửi dưới dạng bản rõ (chưa được băm). Không nên sử dụng loại xác thực này. Loại này xuất hiện khi đăng nhập ASP script với advapi hoặc qua basic authentication mode của IIS. |
+| 9 | **New credentials-based logon** Sự kiện này xảy ra khi sử dụng lệnh RunAs. Lệnh này cho phép sử dụng phiên đăng nhập của bản thân dưới một user khác. Ví dụ truy cập vào một folder chia sẻ, tuy nhiên có một số tệp bạn không có quyền truy cập, bạn có thể sử dụng runas với một tài khoản khác có quyền để truy cập. (MS says "A caller cloned its current token and specified new credentials for outbound connections. The new logon session has the same local identity, but uses different credentials for other network connections.")|
+| 10 | **RemoteInteractive** đăng nhập thông qua RDP |
+| 11 | **CachedInteractive** khi logon trong domain, windows cache sẽ lưu lại các credential sử đụng để đăng nhập khi DC không khả dụng. Mặc đinh, WIndows lưu trữ 10-25 credential cuối cùng. Khi cố gắng đăng nhập trong lúc DC không khả dụng, Windows sẽ kiểm tra thông tin có trong cache và ghi nhật kí với type = 11 |
 
+**Với Windows 10/2016 có thêm các trường sau**:
+- **Restricted admin mode**: hạn chế admin được sử dụng để ngăn chặn tấn công sử dụng pass-the-hash. Bạn chỉ thấy trường này với logon type 10. Giá trị thông thường "-": không hạn chế. "Yes" : hạn chế được sử dụng.  
+Xem thêm về [resrticted admin mode](2020-11-02-restricted-admin-rdp.md).
 
