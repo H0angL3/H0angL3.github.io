@@ -1,0 +1,39 @@
+I"t<div id="archives" class="pl-xl-2">
+
+  
+  
+  
+    
+    
+  <span class="lead">2020</span>
+  <ul class="list-unstyled">
+  
+    <li>
+      <div>
+        
+        
+        <span class="date day">25</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/posts/AboutNIDBook/">Network Intrusion Detection</a>
+      </div>
+    </li>
+  
+
+  
+  
+  
+    <li>
+      <div>
+        
+        
+        <span class="date day">25</span>
+        <span class="date month small text-muted">Nov</span>
+        <a href="/posts/IntoGCIA/">Giới thiệu GCIA &amp; roadmap</a>
+      </div>
+    </li>
+  
+  </ul>
+  
+
+</div>
+:ET
