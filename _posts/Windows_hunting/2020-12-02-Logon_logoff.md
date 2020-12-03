@@ -46,3 +46,10 @@ Phần này chứa các trường thông tin sau:
 - **Restricted admin mode**: hạn chế admin được sử dụng để ngăn chặn tấn công sử dụng pass-the-hash. Bạn chỉ thấy trường này với logon type 10. Giá trị thông thường "-": không hạn chế. "Yes" : hạn chế được sử dụng.  
 Xem thêm về [resrticted admin mode](2020-11-02-restricted-admin-rdp.md).
 
+- **Virtual account**: Bình thường "NO". "YES" dùng để thông báo dịch vụ được cấu hình đăng nhập bằng virtual account. Chỉ đi kèm với type 5.
+- **Elevanted TOken**: Yes hoặc No. Nó đặt giá trị là YES nếu user đăng nhập thuộc ADministrators-kind of.. "Kind of"  được áp dụng cho interactive logon, khi bạn đăng nhập với quyền admin và UAC được bật. Khi thực hiện đăng nhập, bạn sẽ nhận được 2 sesion logon:
+    - Một phiên không có administrator SID và các đặc quyền liên quan đến secutiry token liên quan.
+    - Một phiên có SID và tất cả các quyền bảo mật.
+    - Mọi thứ bạn thực thi đều được thực hiện dưới phiên không có đặc quyền cho đến khi thực thi thứ gì đó dưới quyền admin.
+
+## Impressionation Level (win2012 -> later)
